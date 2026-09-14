@@ -4,6 +4,7 @@ import connectDB from "./utils/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import fs from "fs";
 import path from "path";
+import job from "./lib/cron.js";
 
 dotenv.config();
 
@@ -39,6 +40,8 @@ const startServer = async () => {
 
     app.listen(PORT, () => {
       console.log("listening to port ", PORT);
+
+      if (process.env.NODE_ENV === "production") job.start();
     });
   } catch (err) {
     console.error("The error is ", err);
