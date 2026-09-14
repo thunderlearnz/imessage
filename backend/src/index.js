@@ -15,7 +15,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL;
 const publicDir = path.join(process.cwd(), "public");
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 app.use(clerkMiddleware());
 
 app.get("/", (req, res) => {
