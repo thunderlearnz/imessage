@@ -23,6 +23,11 @@ app.get("/health", (req, res) => {
   return res.status(200).json({ ok: true });
 });
 
+app.post("/api/webhooks/clerk", (req, res, next) => {
+  console.log("the req is ", req);
+  return res.json(req);
+});
+
 const startServer = async () => {
   try {
     // if the public directory exists, serve the static files
