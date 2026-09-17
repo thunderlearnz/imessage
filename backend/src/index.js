@@ -24,8 +24,8 @@ app.get("/health", (req, res) => {
 });
 
 app.post("/api/webhooks/clerk", (req, res, next) => {
-  console.log("the req is ", req);
-  return res.json(req);
+  console.log("the req is ", req.body);
+  return res.json(req.body);
 });
 
 const startServer = async () => {
