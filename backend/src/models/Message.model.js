@@ -30,6 +30,6 @@ const messageSchema = new mongoose.Schema(
   },
 );
 
-const Message = mongoose.Model("Message", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
 
 export default Message;
