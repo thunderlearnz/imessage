@@ -6,6 +6,8 @@ import fs from "fs";
 import path from "path";
 import job from "./lib/cron.js";
 import clerkWebhookRouter from "./webhooks/clerk.webhook.js";
+import authRoute from "./routes/auth.route.js";
+import { protectRoute } from "./middleware/auth.middleware.js";
 
 dotenv.config();
 
@@ -20,8 +22,12 @@ const publicDir = path.join(process.cwd(), "public");
 app.use("/api/webhooks/clerk",express.raw({ type: "application/json" }),clerkWebhookRouter);
 // ==========================================
 // GENERAL MIDDLEWARE (Applied to all subsequent routes)
-// ==========================================
+// ==========================================``
 app.use(express.json());
+
+
+app.use("/api/auth",protectRoute,authRoute);
+
 // app.use(cors());
 app.use(clerkMiddleware());
 

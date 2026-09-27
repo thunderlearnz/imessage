@@ -75,7 +75,7 @@ router.post(
         await User.findOneAndUpdate(
           { clerkId: id },
           { email, fullName, profilePicture: image_url || "" },
-          { new: true, upsert: true }
+          { returnDocument: "after", upsert: true }
         );
         console.log(`User created or synced successfully: ${id}`);
       } else if (eventType === "user.updated") {
@@ -86,7 +86,7 @@ router.post(
         await User.findOneAndUpdate(
           { clerkId: id },
           { email, fullName, profilePicture: image_url || "" },
-          { new: true, upsert: true }
+          { returnDocument: "after", upsert: true }
         );
         console.log(`User updated successfully: ${id}`);
       } else if (eventType === "user.deleted") {
